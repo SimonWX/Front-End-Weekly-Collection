@@ -85,28 +85,28 @@ Token是在服务端产生的。如果前端使用用户名和密码向服务端
 
   * (4) Refresh Token(一般是在获取页面的公共常用数据的时候刷新Token值)
 
-  ```
-  //刷新Token
-  function refreshToken() {
-    dmsCommon.ajaxRestRequest({
-      url:"/api/v1/login/refreshToken",
-      type: "GET",
-      async: false,
-      sucessCallBack: function(data) {
-        currentToken = data;
-      }
-    });
-  }
+    ```
+    //刷新Token
+    function refreshToken() {
+      dmsCommon.ajaxRestRequest({
+        url:"/api/v1/login/refreshToken",
+        type: "GET",
+        async: false,
+        sucessCallBack: function(data) {
+          currentToken = data;
+        }
+      });
+    }
 
-  //每5分钟刷新一次token 值
-  function refreshTokenInterval() {
-    setInterval(refreshToken, 5 * 60 * 1000);
-  }
-  
-  //初始化常规数据
-  function getMainnData(){
-    // coding
-    //进行定时刷新
-    refreshTokenInterval();
-  }
-  ```
+    //每5分钟刷新一次token 值
+    function refreshTokenInterval() {
+      setInterval(refreshToken, 5 * 60 * 1000);
+    }
+    
+    //初始化常规数据
+    function getMainnData(){
+      // coding
+      //进行定时刷新
+      refreshTokenInterval();
+    }
+    ```

@@ -1,5 +1,5 @@
 ## 异构系统链路追踪
-by 邢沛（from baidu & DiDi）
+By 邢沛（From Baidu & DiDi）
 
 1. 服务化改造
     * 效果

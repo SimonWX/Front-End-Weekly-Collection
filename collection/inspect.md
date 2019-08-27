@@ -1,4 +1,21 @@
-##（一）
+## （一）
+1. 
+    * 行内元素：a，span，b，i，u，em
+    * 块级元素：div，p，h1~h6，li，dt，dd
+    * 区别： 行内元素与其他行内元素并排，不能设置宽高，默认的宽度就是文字的宽度。块级元素独占一行，不能与其他任何元素并列。能接收宽高，如果不设置宽度，那么宽度将默认变为父级的100%。
+2. new操作符执行了什么？
+    * var obj = new Base();
+    * new操作符具体干了什么呢?其实很简单，就干了三件事情。
+      ```
+      var obj = {};
+      obj.__proto__ = Base.prototype;
+      Base.call(obj);
+      ```
+    * 第一行，我们创建了一个空对象obj
+    * 第二行，我们将这个空对象的__proto__成员指向了Base函数对象prototype成员对象
+    * 第三行，我们将Base函数对象的this指针替换成obj，然后再调用Base函数，于是我们就给obj对象赋值了一个id成员变量，这个成员变量的值是”base”，关于call函数的用法。
+3. 
+
 ```
 console.log(typeof(null)) //'Object'
 console.log(typeof(undefined)) // undefined
@@ -91,7 +108,7 @@ add(1,2,3,5,6);
 
 
 
-##（二）
+## （二）
 ```
   console.log([1<2==1,3<2==0])  // [true, true]
   console.log(true<2)  //true

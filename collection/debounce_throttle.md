@@ -198,5 +198,4 @@ function throttle(func, wait ,type) {
   }
 }
 ```
-
-参考：https://www.jianshu.com/p/c8b86b09daf0
+reference from：https://www.jianshu.com/p/c8b86b09daf0

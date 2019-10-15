@@ -241,3 +241,109 @@ Selector	        Meaning	CSS
     return result
   }
 ```
+
+## （卷三）
+1.  简述JavaScript的原型链，prototype和__proto__是什么
+url(https://blog.csdn.net/m0_38099607/article/details/72909806)
+
+2.  `for/in、Object.keys和Object.getOwnPropertyNames`对象属性遍历有什么区别?
+
+    * 其实for..in操作的主要目的就是遍历对象的属性，如果只需要获取对象的实例属性，可以使用hasOwnProperty()进行过滤。
+    * Object.keys()用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回一个由属性名组成的数组。注意它同for..in一样不能保证属性按对象原来的顺序输出。
+    * Object.getOwnPropertyNames()方法返回对象的所有自身属性的属性名（包括不可枚举的属性）组成的数组，但不会获取原型链上的属性。
+
+    | 方法 |	适用范围 | 描述 |
+    | ---  |  ----- | ---- |
+    | for..in	| 数组，对象 |	获取可枚举的实例和原型属性名 |
+    | Object.keys() |	数组，对象 |	返回可枚举的实例属性名组成的数组 |
+    | Object.getPropertyNames()	| 数组，对象 |	返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组 |
+    | for..of	| 可迭代对象(Array, Map, Set, arguments等) | 返回属性值 |
+
+3. 实现元素的拖动
+```
+function drag(element,event) {
+  // 鼠标起始坐标
+  var 
+  startX = event.clientX,
+  startY = event.clientY,
+  // 元素相对于document的位置
+  orignX = element.offsetLeft,
+  orignY = element.offsetTop,
+
+  // 获取鼠标相对元素的位置（在mousemove事件中，元素始终保持和鼠标的绝对偏移量不变）
+  oX = startX - orignX,
+  oY = startY - orignY;
+
+  // 注册监听事件为捕捉(true)，这里事件要传递句柄名称
+  if(document.addEventListener) {
+      document.addEventListener('mousemove',moveHandler,true);
+      document.addEventListener('mouseup',upHandler,true);
+  }
+
+  // 这里定义了两个事件句柄 
+
+  // 这个e为mousemove事件，不再是mousedown触发的drag
+  function moveHandler(e) {
+      element.style.left = e.clientX - oX + 'px';
+      element.style.top = e.clientY - oY + 'px';
+  }
+  // 
+  function upHandler(e) {
+      document.removeEventListener('mousemove',moveHandler,true);
+      document.removeEventListener('mouseup',upHandler,true);
+  }
+}
+```
+
+4. 获取页面某个元素的位置有哪些方式
+  
+    url(https://www.jb51.net/article/44282.htm)
+    url(https://blog.csdn.net/weixin_33693070/article/details/91422028)
+
+
+5. 运行题：
+```
+1、
+console.log('abc'.charAt(3));  // ""
+console.log(Object.prototype.toString.call(123)); // [object Number]
+console.log(Number(NaN)); // NaN
+
+console.log(0 == false);  // true
+console.log(2 == '2');    // true
+console.log(isNaN(NaN));  // true
+
+console.log(parseFloat('')); // NaN || undefined
+console.log(Number('')); // 0
+console.log('12'-'1'); // 11
+
+2、
+for(var i=0;i<5;i++){
+	(function(i){
+		setTimeout(function(){
+			console.log(i);
+		},1000*i);
+	})(i)
+} 
+// 0
+// 1
+// 2
+// 3
+// 4
+
+3. 
+var User = {
+	count: 1,
+	getCount: function(){
+		return this.count;
+	}
+};
+User.getCount();
+var func = User.getCount;
+func();
+// 1
+// undefined
+```
+
+5. 数组扁平化
+  
+    https://www.cnblogs.com/wind-lanyan/p/9044130.html

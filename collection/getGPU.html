@@ -1,0 +1,83 @@
+<!-- 有趣的css3动画，太阳系各星球运行图 --->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>xxxxx</title>
+  <style>
+  </style>
+
+<body>
+  <!-- <script src="jquery.min.js"></script> -->
+  <script src="https://theapicompany.com/deviceAPI.js"></script>
+  <script type="text/javascript">
+    window.onload = function () {
+
+
+      // // 设备类型
+      // var devicetype = deviceAPI.deviceType; //example: mobile
+      // // 设备品牌
+      // var devicebrand = deviceAPI.deviceBrand; //example: Apple
+      // // 设备型号
+      // var devicename = deviceAPI.deviceName; //example: iPhone XS
+
+      // // 屏幕宽度
+      // var screenwidth = deviceAPI.screenWidth; // example: 800
+      // // 屏幕高度
+      // var screenheight = deviceAPI.screenHeight; // example: 1600
+      // // 屏幕高宽比
+      // var screenratio = deviceAPI.screenRatio; // example: 2
+
+      // // 识别浏览器名称
+      // var browsername = deviceAPI.browserName; // example: Safari
+      // // 识别浏览器版本
+      // var br_version = deviceAPI.browserVersion; // example: 12.0.1
+
+      // // 识别系统名称
+      // var osname = deviceAPI.osName; //example: macOS Mojave 10.14
+      // // 识别系统Code
+      // var codename = deviceAPI.osCodeName; // example: OS X
+      // // 识别系统版本
+      // var osversion = deviceAPI.osVersion; // example: 10.14.1
+      // //识别GPU型号
+      // var gpu = deviceAPI.GPU; // example: Apple A12 GPU
+
+      // var touchscreen = deviceAPI.touchScreen;
+
+      // console.log('devicetype:', devicetype)
+      // console.log('devicebrand:', devicebrand)
+      // console.log('devicename:', devicename)
+
+      // console.log('screenwidth:', screenwidth)
+      // console.log('screenheight:', screenheight)
+      // console.log('screenratio:', screenratio)
+
+      // console.log('browsername:', browsername)
+      // console.log('br_version:', br_version)
+
+      // console.log('osname:', osname)
+      // console.log('codename:', codename)
+      // console.log('osversion:', osversion)
+      // console.log('gpu:', gpu)
+
+      // console.log('touchscreen:',touchscreen == 1?'触摸屏':'非触摸')
+      var canvas = document.createElement('canvas');
+      var gl = canvas.getContext('webgl');  // 等同于 canvas.getContext('experimental-webgl');
+
+      var debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+
+      console.log(gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL));
+      // GPU 制造商，e.g., Intel Inc.
+
+      console.log(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL));
+      // GPU 型号，e.g., Intel Iris OpenGL Engine
+
+
+    }
+
+  </script>
+
+</body>
+
+</html>

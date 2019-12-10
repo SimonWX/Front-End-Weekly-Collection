@@ -347,3 +347,102 @@ func();
 5. 数组扁平化
   
     https://www.cnblogs.com/wind-lanyan/p/9044130.html
+
+
+## 卷四（无标题）
+### 一、基础题
+1. 
+2. 
+3. JavaScript如何实现继承
+
+    url(https://www.jianshu.com/p/c6eaaf15035b)
+
+### 二、简答题
+1. 简述移动端兼容性问题
+    * https://blog.csdn.net/wanshaobo888/article/details/79868993
+    * https://www.cnblogs.com/wu-web/p/7866963.html
+    * https://www.cnblogs.com/ljx20180807/p/9729941.html
+2. JavaScript中array对象的方法有哪些？
+    * concat()：连接两个或更多的数组，并返回结果。
+    * join()：把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。
+    * pop()、push()、shift()、unshift()
+    * slice()、splice()
+    * indexOf()、lastIndexOf()
+    * reverse()、sort()
+    * toString()、toLocaleString()
+3. 简述前端监控系统
+    * https://www.cnblogs.com/hyhy904/p/10983054.html
+    * https://blog.csdn.net/weixin_34315665/article/details/94234070
+
+### 三、运行结果题
+1. 
+    * console.log(typeof undefined == 'undefined') //true
+    * console.log(true < 3) // true
+    * console.log('12' < '9') // true
+
+    * Object.prototype.toString.call(undefined) // "[object Undefined]"
+    * console.log(parseFloat('')) // NaN
+    * console.log('1'+2) // 12
+
+2. 
+    * 
+        ```
+        console.log(1)
+        new Promise(function(resolve,reject){
+          process.nextTick(()=>{console.log(9)})
+          console.log(2)
+          resolve()
+          console.log(3)
+          process.nextTick(()=>{console.log(7)})
+        }).then(function(){
+          console.log(4)
+          process.nextTick(()=>{console.log(8)})
+        })
+        setTimeout(function(){console.log(5)},0)
+        console.log(6)
+
+        // 1,6,2,3,9,7,4,8,5
+        ```
+
+    * 
+        ```
+        var a = 1;
+        var obj = {
+          a: 2,
+          b: this.a,
+          func1: ()=>{
+            console.log(this)
+            console.log(this.b)
+          },
+          func2: ()=>{
+            console.log(this)
+            console.log(this.b)
+          }
+        }
+        obj.func1();
+        obj.func2();
+        var f1 = obj.func1;
+        f1();
+        var f2 = obj.func2;
+        f2();
+        ```
+
+        ### 四、
+        1. 
+            
+              'hello xiao ming'.split(' ').reverse().join(' ')
+
+        2. 
+        ```
+        var s = "1122333455";
+        var s1 = s;
+        var c;
+        var cc = s.match(/(\d)\1+/g);    //11,22,333,55 当然这里用()\1*也会可以(因为下面是替换):11,22,333,4,55
+        for(var i = 0;i<cc.length;i++){
+            c = cc[i].substring(0,1);
+            s1 = s1.replace(cc[i],c);
+        }
+        alert(s1);   //12345
+        ```
+
+

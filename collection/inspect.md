@@ -1,4 +1,5 @@
 ## （一）
+### 一、
 1. 
     * 行内元素：a，span，b，i，u，em
     * 块级元素：div，p，h1~h6，li，dt，dd
@@ -14,97 +15,195 @@
     * 第一行，我们创建了一个空对象obj
     * 第二行，我们将这个空对象的__proto__成员指向了Base函数对象prototype成员对象
     * 第三行，我们将Base函数对象的this指针替换成obj，然后再调用Base函数，于是我们就给obj对象赋值了一个id成员变量，这个成员变量的值是”base”，关于call函数的用法。
+
+### 二、
+1. 简述移动端页面宽度适配方案及原理？
+    <https://www.cnblogs.com/chenyoumei/p/10510321.html)>
+2. Javascript闭包的应用场景有哪些？在实际工作中使用过哪些场景？
+    <https://blog.csdn.net/qq_21132509/article/details/80694517>
+    * 读取函数内部的变量
+    * 让这些变量的值始终保持在内存中。不会再f1调用后被自动清除。
+    * 方便调用上下文的局部变量。利于代码封装。
+    原因：f1是f2的父函数，f2被赋给了一个全局变量，f2始终存在内存中，f2的存在依赖f1，因此f1也始终存在内存中，不会在调用结束后，被垃圾回收机制回收。
+3. 移动端如何实现镂空遮罩引导层？
+    <https://blog.csdn.net/xjun0812/article/details/51207177>
+
+### 三、
+1. 
+    ```
+    console.log(typeof(null)) //'Object'
+    console.log(typeof(undefined)) // undefined
+    console.log(typeof(NaN)) // number
+    ```
+
+    ```
+    console.log(NaN == undefined) // false
+    console.log(1 === true) // false
+    console.log(a === new String('a')) //false a：Undefined newString('a') 字符串对象
+    ```
+
+    ```
+    console.log(0 == '') // true
+    console.log(0==false) // true
+    console.log(isNaN(NaN)) // true
+    ```
+
+    ```
+    console.log(1+2+'3'+4)  // '334'
+    console.log('12'-'1') // 11
+    console.log('1'+2-'1') // 11
+    ```
+
+2. 
+    ```
+    window.name = 'XDF'
+    function A(){
+      this.name = 123
+    }
+    A.prototype.getA = function(){
+      console.log(this)
+      return this.name + 1
+    }
+    let a = new A()
+    let funcA = a.getA
+    funcA()
+
+    // 结果  console： window对象
+    // return 'XDF1'
+    ```
+
 3. 
+    ```
+      console.log(1);
+      setTimeout(function() {
+        console.log(2);
+        setTimeout(function() {
+          console.log(3);
+        }, 0);
+        process.nextTick(() => {
+          console.log(4);
+        });
+      }, 100);
+      new Promise((resolve, reject) => {
+        console.log(5);
+        resolve();
+      }).then(() => {
+        console.log(6);
+      });
+      setTimeout(function() {
+        console.log(7);
+        setTimeout(function() {
+          console.log(8);
+        }, 0);
+      }, 100);
+      console.log(10);
+      // 1
+      // 5
+      // 10
+      // 6
+      // 2
+      // 4
+      // 7
+      // 3
+      // 8
+      // process.nextTick()的意思就是定义出一个动作，并且让这个动作在下一个事件轮询的时间点上执行。
 
-```
-console.log(typeof(null)) //'Object'
-console.log(typeof(undefined)) // undefined
-console.log(typeof(NaN)) // number
-```
+    ```
 
-```
-console.log(NaN == undefined) // false
-console.log(1 === true) // false
-console.log(a === new String('a')) //false a：Undefined newString('a') 字符串对象
-```
+### 四、
+1. 编码题，实现一个不定数量参数的求和函数，非number类型数据需要进行过滤。
+    ```
+    function add(){
+      var sum =0;
+      for(var i=0;i<arguments.length;i++){
+          sum += arguments[i];
+      }
+      alert(sum);
+    }
+    add(1,2,3,5,6);
+    ```
 
-```
-console.log(0 == '') // true
-console.log(0==false) // true
-console.log(isNaN(NaN)) // true
-```
+2. 数组去重
+    ```
 
-```
-console.log(1+2+'3'+4)  // '334'
-console.log('12'-'1') // 11
-console.log('1'+2-'1') // 11
-```
+    ```
 
-```
-window.name = 'XDF'
-function A(){
-  this.name = 123
-}
-A.prototype.getA = function(){
-  console.log(this)
-  return this.name + 1
-}
-let a = new A()
-let funcA = a.getA
-funcA()
+3. 实现如下求和函数
+    ```
+    sum(1); //1
+    sum(1)(2); //3
+    sum(1)(2)(3,4) // 10
+    ```
 
-// 结果  console： window对象
-// return 'XDF1'
-```
+    ```
+    //案例1
+    //sum(2,3)和sum(2)(3)均能输出outPut5，这个问题较为简单，只要返回一个函数即可，本例中使用了es6语法
+    function sum(x = 0, y) {
+      if ([...arguments][1] == undefined) {
+        let befor = [...arguments][0];
+        return function suum(afte) {
+          let sum2 = befor + afte;
+          console.log(`outPut${sum2}`);
+        }
+      } else {
+        let sum1 = x + y;
+        console.log(`outPut${sum1}`);
+      }
+    }
 
-```
-  console.log(1);
-  setTimeout(function() {
-    console.log(2);
-    setTimeout(function() {
-      console.log(3);
-    }, 0);
-    process.nextTick(() => {
-      console.log(4);
-    });
-  }, 100);
-  new Promise((resolve, reject) => {
-    console.log(5);
-    resolve();
-  }).then(() => {
-    console.log(6);
-  });
-  setTimeout(function() {
-    console.log(7);
-    setTimeout(function() {
-      console.log(8);
-    }, 0);
-  }, 100);
-  console.log(10);
-  // 1
-  // 5
-  // 10
-  // 6
-  // 2
-  // 7
-  // 3
-  // 4
-  // 8
-  // process.nextTick()的意思就是定义出一个动作，并且让这个动作在下一个事件轮询的时间点上执行。
+    sum(2, 3); //输出outPut5
+    sum(2)(3); //输出outPut5
+    ```
 
-```
+    ```
+    //案例二、add(2,3,4...)和add(2)(3)(4)...都输出相同结果的解决方案
+    function add(x) {
+      var sum = x;
+      var tmp = function (y) {
+        sum = sum + y;
+        return tmp;
+      };
+      tmp.toString = function () {
+        return sum;
+      };
+      return tmp;
+    }
+    console.log(add(1)(2)(3)); //6
+    console.log(add(1)(2)(3)(4)); //10
+    console.log(add(1)(2)(3)(4)(5)); //15
+    console.log(add(1)(2)(3)(4)(5)(6)); //21
+    ```
 
-```
-function add(){
-  var sum =0;
-  for(var i=0;i<arguments.length;i++){
-      sum += arguments[i];
-  }
-  alert(sum);
-}
-add(1,2,3,5,6);
-
-```
+    ```
+    //扩展案例3、此函数使用es6实现输入sum(),sum(2,3,4...)多个值相加，还有sum(2)(3)(4)...等多个数值分别相加的值相等，此案例也是最完整的解决方案
+    function sum(...args) {
+      if ([...args].length == 1) {
+        let sum2 = [...args][0];
+        var suum = function (y) {
+          sum2 += y;
+          console.log(`output ${sum2}`)
+          return suum;
+        }
+        suum.valueOf = function () {
+          return sum2;
+        }
+        return suum;
+      } else {
+        let sum1 = 0;
+        for (var i = 0; i < [...args].length; i++) {
+          sum1 += [...args][i];
+        }
+        return sum1
+      }
+    }
+    //sum(1); //outPut1 0
+    //sum(2, 3, 4); //outPut1 9
+    //sum(2)(3)(4)(5); //outPut1 5//outPut1 9//outPut1 14
+    //每加一次就会输出一次Sum。如果不想输出三次则可以在函数中加一个valueOf方法或者toString方法。然后将Summ函数中的console去掉。
+    //然后console.log(sum(2)(3)(4)(5));即可
+    console.log(sum(2)(3)(4)(5))
+    console.log(sum(2))
+    ```
 
 
 
@@ -145,7 +244,7 @@ Selector	Meaning	 CSS  Version
 * 伪元素
 Selector	        Meaning	CSS
 ::first-letter	  选择指定元素的第一个单词	        1
-::first-line	    选择指定元素的第一行	            1
+::first-line	    选择指定元素的第一行	           1
 ::after	          在指定元素的内容前面插入内容	    2
 ::before	        在指定元素的内容后面插入内容	    2
 ::selection	      选择指定元素中被用户选中的内容	  3
@@ -243,8 +342,7 @@ Selector	        Meaning	CSS
 ```
 
 ## （卷三）
-1.  简述JavaScript的原型链，prototype和__proto__是什么
-url(https://blog.csdn.net/m0_38099607/article/details/72909806)
+1. <https://blog.csdn.net/m0_38099607/article/details/72909806>
 
 2.  `for/in、Object.keys和Object.getOwnPropertyNames`对象属性遍历有什么区别?
 
@@ -296,9 +394,8 @@ function drag(element,event) {
 ```
 
 4. 获取页面某个元素的位置有哪些方式
-  
-    url(https://www.jb51.net/article/44282.htm)
-    url(https://blog.csdn.net/weixin_33693070/article/details/91422028)
+    * <https://www.jb51.net/article/44282.htm>
+    * <https://blog.csdn.net/weixin_33693070/article/details/91422028>
 
 
 5. 运行题：
@@ -346,7 +443,7 @@ func();
 
 5. 数组扁平化
   
-    https://www.cnblogs.com/wind-lanyan/p/9044130.html
+    <https://www.cnblogs.com/wind-lanyan/p/9044130.html>
 
 
 ## 卷四（无标题）
@@ -355,13 +452,13 @@ func();
 2. 
 3. JavaScript如何实现继承
 
-    url(https://www.jianshu.com/p/c6eaaf15035b)
+    <https://www.jianshu.com/p/c6eaaf15035b>
 
 ### 二、简答题
 1. 简述移动端兼容性问题
-    * https://blog.csdn.net/wanshaobo888/article/details/79868993
-    * https://www.cnblogs.com/wu-web/p/7866963.html
-    * https://www.cnblogs.com/ljx20180807/p/9729941.html
+    * <https://blog.csdn.net/wanshaobo888/article/details/79868993>
+    * <https://www.cnblogs.com/wu-web/p/7866963.html>
+    * <https://www.cnblogs.com/ljx20180807/p/9729941.html>
 2. JavaScript中array对象的方法有哪些？
     * concat()：连接两个或更多的数组，并返回结果。
     * join()：把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。
@@ -371,8 +468,8 @@ func();
     * reverse()、sort()
     * toString()、toLocaleString()
 3. 简述前端监控系统
-    * https://www.cnblogs.com/hyhy904/p/10983054.html
-    * https://blog.csdn.net/weixin_34315665/article/details/94234070
+    * <https://www.cnblogs.com/hyhy904/p/10983054.html>
+    * <https://blog.csdn.net/weixin_34315665/article/details/94234070>
 
 ### 三、运行结果题
 1. 

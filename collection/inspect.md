@@ -18,7 +18,7 @@
 
 ### 二、
 1. 简述移动端页面宽度适配方案及原理？
-    <https://www.cnblogs.com/chenyoumei/p/10510321.html)>
+    <https://www.cnblogs.com/chenyoumei/p/10510321.html>
 2. Javascript闭包的应用场景有哪些？在实际工作中使用过哪些场景？
     <https://blog.csdn.net/qq_21132509/article/details/80694517>
     * 读取函数内部的变量
@@ -102,7 +102,7 @@
       // 10
       // 6
       // 2
-      // 4
+      // 4 （如果没有声明node，则是报错）
       // 7
       // 3
       // 8
@@ -124,9 +124,50 @@
     ```
 
 2. 数组去重
-    ```
+    * for循环嵌套，利用splice去重（时间复杂度：n²）
+      ```
+      function newArr(arr){
+        for(var i=0;i<arr.length;i++){
+          for(var j=i+1;j<arr.length;j++){
+            if(arr[i]==arr[j]){ 
+              //如果第一个等于第二个，splice方法删除第二个
+              arr.splice(j,1);
+              j--;
+            }
+          }
+        }
+        return arr;
+      }
+      var arr = [1,1,2,5,6,3,5,5,6,8,9,8];
+      console.log(newArr(arr))
+      ```
 
-    ```
+    * 建新数组，利用indexOf去重（基本思路是新建一个数组，原数组遍历传入新数组，判断值是否存在，值不存在就加入该新数组中，时间复杂度：n）
+      ```
+      function newArr(array){ 
+        //一个新的数组 
+        var arrs = []; 
+        //遍历当前数组 
+        for(var i = 0; i < array.length; i++){ 
+          //如果临时数组里没有当前数组的当前值，则把当前值push到新数组里面 
+          if (arrs.indexOf(array[i]) == -1){ 
+              arrs.push(array[i])
+          }; 
+        } 
+        return arrs; 
+      }
+      var arr = [1,1,2,5,5,6,8,9,8];
+      console.log(newArr(arr))
+      ```
+    
+    * ES6中利用Set去重
+      ```
+      function newArr(arr){
+        return Array.from(new Set(arr))
+      }
+      var arr = [1,1,2,9,6,9,6,3,1,4,5];
+      console.log(newArr(arr))
+      ```
 
 3. 实现如下求和函数
     ```

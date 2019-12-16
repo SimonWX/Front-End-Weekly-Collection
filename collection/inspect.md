@@ -383,9 +383,12 @@ Selector	        Meaning	CSS
 ```
 
 ## （卷三）
-1. <https://blog.csdn.net/m0_38099607/article/details/72909806>
+### 一、基础题
+3. 简述JavaScript的原型链，prototype和_proto_是什么？ 
+<https://blog.csdn.net/m0_38099607/article/details/72909806>
 
-2.  `for/in、Object.keys和Object.getOwnPropertyNames`对象属性遍历有什么区别?
+### 二、简答题
+1.  `for/in、Object.keys和Object.getOwnPropertyNames`对象属性遍历有什么区别?
 
     * 其实for..in操作的主要目的就是遍历对象的属性，如果只需要获取对象的实例属性，可以使用hasOwnProperty()进行过滤。
     * Object.keys()用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回一个由属性名组成的数组。注意它同for..in一样不能保证属性按对象原来的顺序输出。
@@ -398,48 +401,47 @@ Selector	        Meaning	CSS
     | Object.getPropertyNames()	| 数组，对象 |	返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组 |
     | for..of	| 可迭代对象(Array, Map, Set, arguments等) | 返回属性值 |
 
-3. 实现元素的拖动
-```
-function drag(element,event) {
-  // 鼠标起始坐标
-  var 
-  startX = event.clientX,
-  startY = event.clientY,
-  // 元素相对于document的位置
-  orignX = element.offsetLeft,
-  orignY = element.offsetTop,
+2. 实现元素的拖动
+    ```
+    function drag(element,event) {
+      // 鼠标起始坐标
+      var 
+      startX = event.clientX,
+      startY = event.clientY,
+      // 元素相对于document的位置
+      orignX = element.offsetLeft,
+      orignY = element.offsetTop,
 
-  // 获取鼠标相对元素的位置（在mousemove事件中，元素始终保持和鼠标的绝对偏移量不变）
-  oX = startX - orignX,
-  oY = startY - orignY;
+      // 获取鼠标相对元素的位置（在mousemove事件中，元素始终保持和鼠标的绝对偏移量不变）
+      oX = startX - orignX,
+      oY = startY - orignY;
 
-  // 注册监听事件为捕捉(true)，这里事件要传递句柄名称
-  if(document.addEventListener) {
-      document.addEventListener('mousemove',moveHandler,true);
-      document.addEventListener('mouseup',upHandler,true);
-  }
+      // 注册监听事件为捕捉(true)，这里事件要传递句柄名称
+      if(document.addEventListener) {
+          document.addEventListener('mousemove',moveHandler,true);
+          document.addEventListener('mouseup',upHandler,true);
+      }
 
-  // 这里定义了两个事件句柄 
+      // 这里定义了两个事件句柄 
 
-  // 这个e为mousemove事件，不再是mousedown触发的drag
-  function moveHandler(e) {
-      element.style.left = e.clientX - oX + 'px';
-      element.style.top = e.clientY - oY + 'px';
-  }
-  // 
-  function upHandler(e) {
-      document.removeEventListener('mousemove',moveHandler,true);
-      document.removeEventListener('mouseup',upHandler,true);
-  }
-}
-```
+      // 这个e为mousemove事件，不再是mousedown触发的drag
+      function moveHandler(e) {
+          element.style.left = e.clientX - oX + 'px';
+          element.style.top = e.clientY - oY + 'px';
+      }
+      // 
+      function upHandler(e) {
+          document.removeEventListener('mousemove',moveHandler,true);
+          document.removeEventListener('mouseup',upHandler,true);
+      }
+    }
+    ```
 
-4. 获取页面某个元素的位置有哪些方式
+3. 获取页面某个元素的位置有哪些方式
     * <https://www.jb51.net/article/44282.htm>
     * <https://blog.csdn.net/weixin_33693070/article/details/91422028>
 
-
-5. 运行题：
+### 三、运行结果题
 ```
 1、
 console.log('abc'.charAt(3));  // ""
@@ -482,8 +484,69 @@ func();
 // undefined
 ```
 
-5. 数组扁平化
-  
+### 四、编程题
+1. 字符串移动：字符串为\*和26个字母的任意组合，把\*都移动到最左侧，把字母移动到最右侧并保持相对顺序不变
+    ```
+    var stars = 'sosunn**afns*repsni*';
+    var rs = stars.split('');
+    var flag = 0;
+    for(var i=rs.length -1; i>=0; i--){
+        if(rs[i] == '*'){
+            flag++;
+        }else{
+            if(flag == 0)
+                continue;
+            else{
+                rs[i+flag] = rs[i];
+                rs[i] = '*';
+            }
+        }
+    }
+    console.log(rs.join(''))
+
+    变型（1）
+    给定一个字符串，写一个函数，查找出该字符串中每个字符出现的次数，要求区分大小写，且时间复杂度为O(n)。
+
+    var str = 'safaAuasfAJIFjHDWEFHDaAueUEWda';
+    var results = {};
+    var rs = str.split('');
+    rs.forEach(function(al){
+        if(results[al] === undefined){
+            results[al] = 1;
+        }else{
+            results[al]++;
+        }
+    })
+    var keys = Object.keys(results);
+    for(var i = 0; i < keys.length; i++){
+        console.log(keys[i] + ' : ' + results[keys[i]]);
+    }
+
+    变型（2）
+    在一个字符串中找到第一个只出现一次的字符。如输入abaccdefbf，则输出d。
+
+    var str = 'abaccdefbf';
+    var results = {};
+    var rs = str.split('');
+    rs.forEach(function(al){
+        if(results[al] === undefined){
+            results[al] = 1;
+        }else{
+            results[al]++;
+        }
+    })
+    var keys = Object.keys(results);
+    for(var i = 0; i < keys.length; i++){
+        if(results[keys[i]] === 1){
+            console.log(keys[i]);
+            break;
+        }
+    }
+    ```
+
+2. 十六进制颜色值的随机生成
+
+3. 数组扁平化
     <https://www.cnblogs.com/wind-lanyan/p/9044130.html>
 
 
@@ -565,22 +628,21 @@ func();
         f2();
         ```
 
-        ### 四、
-        1. 
-            
-              'hello xiao ming'.split(' ').reverse().join(' ')
+### 四、
+1. 
+    `'hello xiao ming'.split(' ').reverse().join(' ')`
 
-        2. 
-        ```
-        var s = "1122333455";
-        var s1 = s;
-        var c;
-        var cc = s.match(/(\d)\1+/g);    //11,22,333,55 当然这里用()\1*也会可以(因为下面是替换):11,22,333,4,55
-        for(var i = 0;i<cc.length;i++){
-            c = cc[i].substring(0,1);
-            s1 = s1.replace(cc[i],c);
-        }
-        alert(s1);   //12345
-        ```
+2. 
+    ```
+    var s = "1122333455";
+    var s1 = s;
+    var c;
+    var cc = s.match(/(\d)\1+/g);    //11,22,333,55 当然这里用()\1*也会可以(因为下面是替换):11,22,333,4,55
+    for(var i = 0;i<cc.length;i++){
+        c = cc[i].substring(0,1);
+        s1 = s1.replace(cc[i],c);
+    }
+    alert(s1);   //12345
+    ```
 
 

@@ -47,6 +47,28 @@
       // clientHeight 为浏览器计算出来的属性(只读)
       node.style.height = node.clientHeight + 200 +'px'
     }
+    window.onload = function(){
+      var a = 1;
+      var obj = {
+        a: 2,
+        b: this.a,
+        func1: ()=>{
+          console.log(this)
+          console.log(this.b)
+        },
+        func2: ()=>{
+          console.log(this)
+          console.log(this.b)
+        }
+      }
+      obj.func1();
+      obj.func2();
+      var f1 = obj.func1;
+      f1();
+      var f2 = obj.func2;
+      f2();
+    }
+    
   </script>
 </body>
 </html>

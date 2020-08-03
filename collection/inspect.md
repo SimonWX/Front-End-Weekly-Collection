@@ -248,7 +248,7 @@
 
 
 
-## （二）
+## （试卷二/面试题2）
 #### *伪类*
 
 | Selector |	Meaning	 | CSS Version |

@@ -908,17 +908,29 @@ titleCase("I'm a little tea pot");
 注：其实还有一种就是for循环
 
 ```
-function largestOfFour(arr){
-	var new_arr = [];
-	for(var i=0; i<arr.length; i++){
-		arr[i].sort(function(a,b){
-			return b - a;
-		})
-		new_arr.push(arr[i][0]);
+方法一：
+function maxAndMin(arr){
+	return {
+		max: Math.max.apply(null, arr.join(',').split(',')),
+		min: Math.min.apply(null, arr.join(',').split(','))
 	}
-	return new_arr;
 }
-largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]])
+
+方法二：
+Math.max(...arr)
+
+方法三:
+function maxAndMin(arr){
+	arr.sort(function(a,b){
+		return (a-b);
+	})
+	var minValue = arr[0]
+	var maxValue = arr[arr.length - 1];
+  return {
+    min: minValue,
+    max: maxValue
+  }
+}
 ```
 
 ## 36、使用promise对setTimeout进行封装，从而支持链式的调用

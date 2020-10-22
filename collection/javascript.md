@@ -254,6 +254,7 @@ function|必需，规定当事件发生时运行的函数。
 		// promise1 Promise {<fulfilled>: "success"}
 		// promise2 Promise {<rejected>: Error: error !!
 
+
     解释：promise有三种状态：pending、fulfilled、或rejected。
     状态改变只能是 pending->fulfilled 或者 pending->rejected，状态一旦改变则不能再变。
     上面 promise2 并不是 promise1，而是返回的一个新的 Promise 实例。
@@ -275,6 +276,7 @@ function|必需，规定当事件发生时运行的函数。
     })
     // 结果：
     // then: success1
+    // Promise {<fulfilled>: undefined}
     解释：构造函数中resolve或reject只有第一次执行有效，
     多次调用没有任何作用，即promise状态一旦改变则不能再变
     ```

@@ -153,8 +153,7 @@ function|必需，规定当事件发生时运行的函数。
     var a = 'str';
     var b = a.self();
     console.log(a); // 'str'
-    
-    console.log(b); String {'str'}
+    console.log(b); // String {'str'}
     
     // valueOf() 方法返回一个String对象的原始值(primitive value)，该值等同于String.prototype.toString()
     
@@ -252,7 +251,7 @@ function|必需，规定当事件发生时运行的函数。
     // promise1 Promise {<pending>}
 		// promise2 Promise {<pending>}
 		// Uncaught (in promise) Error: error !!
-		// promise1 Promise {<resolved>: "success"}
+		// promise1 Promise {<fulfilled>: "success"}
 		// promise2 Promise {<rejected>: Error: error !!
 
     解释：promise有三种状态：pending、fulfilled、或rejected。

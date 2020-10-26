@@ -54,7 +54,85 @@ https://blog.csdn.net/mutouafangzi/article/details/77170982
 #### 2、前端存储
 https://zhuanlan.zhihu.com/p/79590259
 #### 3、meta属性
-https://blog.csdn.net/qq_32013641/article/details/87928426
+```
+<meta/>用于定义页面元信息，定义元信息就是制定一些name-value对。可以制定如下三个属性。
+(1) http-equiv:指定元信息的名称，该属性指定的名称具有特殊意义，它可以向浏览器回传一些有用的信息，帮助浏览器正确地处理网页内容。
+(2) name:指定元信息的名称，该名称值可以随意指定。
+(3) content:指定元信息的值。
+
+可以为网页指定如下的值：
+(1) 网页字符集
+<meta charset="utf-8" />
+(2) 网页作者
+<meta name="author" content="爪蛙没有爪"/>
+(3) 网页地址
+<meta name="website" content="http://www.demo.com"/>
+(4) 网页版权信息
+<meta name="copyright" content="2018-2019 demo.com"/>
+(5) 网页关键字，用于SEO
+<meta name="keywords" content="meta,html"/>
+(6) 网页描述，用于SEO
+<meta name="description" content="网页描述"/>
+(7) 搜索引擎索引方式
+<meta name="robots" content="index,follow" />
+<!--
+    all：文件将被检索，且页面上的链接可以被查询；
+    none：文件将不被检索，且页面上的链接不可以被查询；
+    index：文件将被检索；
+    follow：页面上的链接可以被查询；
+    noindex：文件将不被检索；
+    nofollow：页面上的链接不可以被查询。
+-->
+(8) 网页过期时间
+Expires制指定网页的过期时间。一旦网页过期，必须从服务器上下载。
+<meta http-equiv="expires" content="Fri, 12 Jan 2001 18:18:18 GMT"/>
+(9) 刷新网页
+等待一定的时间刷新或跳转到其他url。
+<meta http-equiv="refresh" content="1; url=https://www.baidu.com"/>
+(10) 禁止从本地缓存中访问网页
+禁止浏览器从本地缓存中读取网页，即浏览器一旦离开网页在无法连接网络的情况下就无法访问到页面。
+<meta http-equiv="pragma" content="no-cache"/>
+(11) 设置cookie
+设置cookie的同时可以同时指定cookie的过期时间等。
+<meta http-equiv="set-cookie" content="name=value expires=Fri, 12 Jan 2001 18:18:18 GMT,path=
+(12) 优化移动设备显示
+viewport可以优化移动端浏览器的显示。
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+(13) WebApp全屏显示
+<meta name="apple-mobile-web-app-capable" content="yes" />
+(14) 隐藏状态栏/设置状态栏颜色
+只有在开启WebApp全屏模式时才生效。content的值为default | black | black-translucent 。
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+(15) 忽略数字自动识别为电话号码
+<meta content="telephone=no" name="format-detection" />
+(16) 忽略识别邮箱
+<meta content="email=no" name="format-detection" />
+(17) 使用浏览器版本
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- 关于X-UA-Compatible -->
+<meta http-equiv="X-UA-Compatible" content="IE=6" ><!-- 使用IE6 -->
+<meta http-equiv="X-UA-Compatible" content="IE=7" ><!-- 使用IE7 -->
+<meta http-equiv="X-UA-Compatible" content="IE=8" ><!-- 使用IE8 -->
+(18) 浏览器内核设置
+主要针对360，搜狗，QQ等双内核浏览器。
+<meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+(19) 转码声明
+使用搜索引擎打开手机版网页后搜索引擎可能会对网页进行转码，若不想转码可设置如下:
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+(20) 移动端相关
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+```
 ### 二、JS基础
 #### 1、实现let/const
 * 实现let
@@ -227,6 +305,7 @@ https://blog.csdn.net/qq_32013641/article/details/87928426
     }
   }
   ```
+https://www.cnblogs.com/cc-freiheit/p/10827372.html
 #### 4、手写Promise
 https://segmentfault.com/a/1190000020505870
 
@@ -284,7 +363,7 @@ https://segmentfault.com/a/1190000017329980
 #### 1、缓存位置和优先级
 https://zhuanlan.zhihu.com/p/160208356
 #### 2、浏览器缓存策略
-https://www.cnblogs.com/ysk123/p/13179562.html
+![avatar](https://pic4.zhimg.com/80/v2-62033a0eeea7ebfddab26aa4f27932c3_1440w.jpg)
 
 ### 七、CSS
 #### 1、清除浮动

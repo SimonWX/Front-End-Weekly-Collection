@@ -469,6 +469,15 @@ https://www.cnblogs.com/tugenhua0707/p/10909284.html
 #### 4、装饰器模式
 #### 5、适配器模式
 #### 6、代理模式
+* Singleton(单例) 一个类只有唯一实例，这个实例在整个程序中有一个全局的访问点
+* Factory (工厂) 解决实列化对象产生重复的问题
+* Strategy(策略) 将每一个算法封装起来，使它们还可以相互替换，让算法独立于使用
+* Observer(观察者) 多个观察者同时监听一个主体，当主体对象发生改变时，所有观察者都将得到通知
+* Prototype(原型) 一个完全初始化的实例，用于拷贝或者克隆
+* Adapter(适配器) 将不同类的接口进行匹配调整，尽管内部接口不兼容，不同的类还是可以协同工作
+* Proxy(代理模式) 一个充当过滤转发的对象用来代表一个真实的对象
+* Iterator(迭代器) 在不需要直到集合内部工作原理的情况下，顺序访问一个集合里面的元素
+* Chain of Responsibility(职责连) 处理请求组成的对象一条链，请求链中传递，直到有对象可以处理
 https://www.cnblogs.com/imwtr/p/9451129.html
 
 ### 十一、排序算法
@@ -480,6 +489,290 @@ https://www.cnblogs.com/9dragon/p/10811316.html
 https://segmentfault.com/a/1190000015487916
 #### 4、归并排序
 https://segmentfault.com/a/1190000017833332
+
+### 十二、前端工程化
+什么是前端工程化？
+前端工程化就是把一整套前端工作流程使用工具自动化完成
+
+前端开发基本流程：
+
+* 项目初始化：yeoman, FIS
+* 引入依赖包：bower, npm
+* 模块化管理：npm, browserify, Webpack
+* 代码编译：babel, sass, less
+* 代码优化(压缩/合并)：Gulp, Grunt
+* 代码检查：JSHint, ESLint
+* 代码测试：Mocha
+* 目前最知名的构建工具：Gulp, Grunt, npm + Webpack
+
+### 十三、什么是函数柯里化Currying)？
+柯里化：
+
+通常也称部分求值，含义是给函数分步传递参数，每次递参部分应用参数，并返回一个更具体的函数，继续接受剩余参数
+期间会连续返回具体函数，直至返回最后结果。因此，函数柯里化是逐步传参，逐步缩小函数的适用范围，逐步求解的过程
+柯里化的作用：延迟计算；参数复用；动态创建函数
+
+柯里化的缺点：函数柯里化会产生开销（函数嵌套，比普通函数占更多内存），但性能瓶颈首先来自其它原因（DOM 操作等）
+
+### 十四、移动端的点击事件的延迟时间是多长，为什么会有延迟？ 如何解决这个延时？
+
+移动端 click 有 300ms 延迟，浏览器为了区分“双击”（放大页面）还是“单击”而设计
+
+解决方案：
+* 禁用缩放(对safari无效)
+* 使用指针事件(IE私有特性，且仅IE10+)
+* 使用 Zepto 的 tap 事件(有点透BUG)
+* 使用 FastClick 插件(体积大[压缩后8k])
+
+### 十五、对 Node.js 的优点、缺点提出了自己的看法？ Node.js的特点和适用场景？
+
+* Node.js的特点：单线程，非阻塞I/O，事件驱动
+* Node.js的优点：擅长处理高并发；适合I/O密集型应用
+* Node.js的缺点：不适合CPU密集运算；不能充分利用多核CPU；可靠性低，某个环节出错会导致整个系统崩溃
+* Node.js的适用场景：
+  * RESTful API
+  * 实时应用：在线聊天、图文直播
+  * 工具类应用：前端部署(npm, gulp)
+  * 表单收集：问卷系统
+
+### 十六、如何测试前端代码? 知道 Unit Test，BDD, TDD 么? 怎么测试你的前端工程(mocha, jasmin..)?
+
+通过为前端代码编写单元测试(Unit Test)来测试前端代码
+Unit Test：一段用于测试一个模块或接口是否能达到预期结果的代码
+
+* BDD：行为驱动开发 -- 业务需求描述产出产品代码的开发方法
+* TDD：测试驱动开发 -- 单元测试用例代码产出产品代码的开发方法
+```
+单元测试框架：
+// mocha 示例
+describe('Test add', function() {
+  it('1 + 2 = 3', function() {
+      expect(add(1, 2)).to.be.equal(3);
+  });
+});
+
+// jasmin 示例
+describe('Test add', function () {
+    it('1 + 2 = 3', function () {
+        expect(add(1, 2)).toEqual(3);
+    });
+});
+```
+
+### 十七、谈一谈你了解ECMAScript6的新特性？
+* 块级作用区域 let a = 1;
+* 可定义常量 const PI = 3.141592654;
+* 变量解构赋值 var [a, b, c] = [1, 2, 3];
+* 字符串的扩展(模板字符串) var sum =${a + b};
+* 数组的扩展(转换数组类型) Array.from($('li'));
+* 函数的扩展(扩展运算符) [1, 2].push(...[3, 4, 5]);
+* 对象的扩展(同值相等算法) Object.is(NaN, NaN);
+* 新增数据类型(Symbol) let uid = Symbol('uid');
+* 新增数据结构(Map) let set = new Set([1, 2, 2, 3]);
+* for...of循环 for(let val of arr){};
+* Promise对象 var promise = new Promise(func);
+* Generator函数 function* foo(x){yield x; return x*x;}
+* 引入Class(类) class Foo {}
+* 引入模块体系 export default func;
+* 引入async函数[ES7]
+
+  ```
+  async function asyncPrint(value, ms) {
+    await timeout(ms);
+    console.log(value)
+  }
+  ```
+
+### 十八、DOM事件总结
+
+1. 基本概念：DOM事件的级别
+
+2. DOM事件模型、DOM事件流
+面试官如果问你“DOM事件模型”，你不一定知道怎么回事。其实说的就是捕获和冒泡。
+
+3. DOM事件流，指的是事件传递的三个阶段。
+    * 描述DOM事件捕获的具体流程
+    讲的是事件的传递顺序。参数为false（默认）、参数为true，各自代表事件在什么阶段触发。
+    * Event对象的常见应用（Event的常用api方法）
+    DOM事件的知识点，一方面包括事件的流程；另一方面就是：怎么去注册事件，也就是监听用户的交互行为。第三点：在响应时，Event对象是非常重要的。
+
+4. 自定义事件（非常重要）
+
+一般人可以讲出事件和注册事件，但是如果让你讲自定义事件，能知道的人，就更少了。
+
+5. DOM事件的级别
+
+    DOM事件的级别，准确来说，是DOM标准定义的级别。包括：
+
+    DOM0的写法：
+      ```
+      element.onclick = function () {
+      }
+      ```
+    上面的代码是在 js 中的写法；如果要在html中写，写法是：在onclick属性中，加 js 语句。
+
+    DOM2的写法：
+    ```
+    element.addEventListener('click', function () {
+    }, false);
+    ```
+    【重要】上面的第三参数中，true表示事件在捕获阶段触发，false表示事件在冒泡阶段触发（默认）。如果不写，则默认为false。
+
+    DOM3的写法：
+    ```
+    element.addEventListener('keyup', function () {
+    }, false);
+    ```
+    DOM3中，增加了很多事件类型，比如鼠标事件、键盘事件等。
+
+    PS：为何事件没有DOM1的写法呢？因为，DOM1标准制定的时候，没有涉及与事件相关的内容。
+
+    总结：关于“DOM事件的级别”，能回答出以上内容即可，不会出题目让你做。
+
+
+6. 捕获的流程
+
+    说明：捕获阶段，事件依次传递的顺序是：window --> document --> html--> body --> 父元素、子元素、目标元素。
+
+    PS1：第一个接收到事件的对象是 window（有人会说body，有人会说html，这都是错误的）。
+    PS2：JS中涉及到DOM对象时，有两个对象最常用：window、doucument。它们俩也是最先获取到事件的。
+代码如下：
+    ```
+    window.addEventListener("click", function () {
+        alert("捕获 window");
+    }, true);
+
+    document.addEventListener("click", function () {
+        alert("捕获 document");
+    }, true);
+
+    document.documentElement.addEventListener("click", function () {
+        alert("捕获 html");
+    }, true);
+
+    document.body.addEventListener("click", function () {
+        alert("捕获 body");
+    }, true);
+
+    fatherBox.addEventListener("click", function () {
+        alert("捕获 father");
+    }, true);
+
+    childBox.addEventListener("click", function () {
+        alert("捕获 child");
+    }, true);
+    ```
+7. 获取body节点和html节点：
+
+    在 js中：
+    如果想获取 body 节点，方法是：`document.body；`
+    但是，如果想获取 html节点，方法是`document.documentElement`
+
+8. Event对象的常见 api 方法
+
+    用户做的是什么操作（比如，是敲键盘了，还是点击鼠标了），这些事件基本都是通过Event对象拿到的。这些都比较简单，我们就不讲了。我们来看看下面这几个方法：
+    * `event.preventDefault();`
+    
+      解释：阻止默认事件。
+      
+      比如，已知\<a>标签绑定了click事件，此时，如果给\<a>设置了这个方法，就阻止了链接的默认跳转。
+    
+    * `event.stopPropagation();`
+      
+      解释：阻止冒泡
+
+      业务这样要求：单击子元素做事件A，单击父元素做事件B，如果不阻止冒泡的话，出现的问题是：单击子元素时，子元素和父元素都会做事件A。这个时候，就要用到阻止冒泡了。
+
+      * w3c的方法：（火狐、谷歌、IE11）`event.stopPropagation();`
+      
+      * IE10以下则是：`event.cancelBubble = true;`
+      
+      * 兼容代码如下：
+
+        ```
+        box3.onclick = function (event) {
+
+            alert("child");
+
+            //阻止冒泡
+            event = event || window.event;
+
+            if (event && event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubble = true;
+            }
+        }
+        ```
+        上方代码中，我们对box3进行了阻止冒泡，产生的效果是：事件不会继续传递到 father、grandfather、body了。
+
+    * `event.stopImmediatePropagation();`
+    
+      解释：设置事件优先级
+
+      比如说，我用addEventListener给某按钮同时注册了事件A、事件B。此时，如果我单击按钮，就会依次执行事件A和事件B。现在要求：单击按钮时，只执行事件A，不执行事件B。该怎么做呢？这是时候，就可以用到stopImmediatePropagation方法了。做法是：在事件A的响应函数中加入这句话。
+
+    * `event.currentTarget`   
+    当前所绑定的事件对象。在事件委托中，指的是【父元素】。
+
+    * `event.target`  
+    当前被点击的元素。在事件委托中，指的是【子元素】。
+    上面这两个属性，在事件委托中经常用到。
+
+9. 自定义事件
+    ```
+    var myEvent = new Event('clickTest');
+    element.addEventListener('clickTest', function () {
+        console.log('smyhvae');
+    });
+    //元素注册事件
+    element.dispatchEvent(myEvent); 
+    //注意，参数是写事件对象 myEvent，不是写 事件名clickTest
+    ```
+	 
+    上面这个事件是定义完了之后，就直接自动触发了。在正常的业务中，这个事件一般是和别的事件结合用的。比如延时器设置按钮的动作：
+    ```
+    var myEvent = new Event('clickTest');
+
+    element.addEventListener('clickTest', function () {
+        console.log('smyhvae');
+    });
+
+    setTimeout(function () {
+        element.dispatchEvent(myEvent); //注意，参数是写事件对象 myEvent，不是写 事件名 clickTest
+    }, 1000);
+    ```
+
+### 十九、CSS有哪些继承属性
+
+关于文字排版的属性如：
+* font
+  * word-break
+  * letter-spacing
+  * text-align
+  * text-rendering
+  * word-spacing
+  * white-space
+  * text-indent
+  * text-transform
+  * text-shadow
+* line-height
+* color
+* visibility
+* cursor
+
+### 二十、CSS选择符有哪些？哪些属性可以继承？
+* id选择器（ # myid）
+* 类选择器（.myclassname）
+* 标签选择器（div, h1, p）
+* 相邻选择器（h1 + p）
+* 子选择器（ul > li）
+* 后代选择器（li a）
+* 通配符选择器（ * ）
+* 属性选择器（a[rel = "external"]）
+* 伪类选择器（a:hover, li:nth-child）
+* 可继承的样式： font-size font-family color, UL LI DL DD DT
+* 不可继承的样式：border padding margin width height
 
 
 

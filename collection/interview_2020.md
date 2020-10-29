@@ -1048,6 +1048,12 @@ https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff
 ### 二十三、从源码角度看数据绑定
 https://github.com/answershuto/learnVue/blob/master/docs/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E5%86%8D%E7%9C%8B%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A.MarkDown
 
+![v-model](https://camo.githubusercontent.com/3845b9554e62650727fa7cae8f1c169060b879f7/68747470733a2f2f636e2e7675656a732e6f72672f696d616765732f646174612e706e67)
+
+这张图比较清晰地展示了整个流程，首先通过一次渲染操作触发Data的getter（这里保证只有视图中需要被用到的data才会触发getter）进行依赖收集，这时候其实Watcher与data可以看成一种被绑定的状态（实际上是data的闭包中有一个Deps订阅者，在修改的时候会通知所有的Watcher观察者），在data发生变化的时候会触发它的setter，setter通知Watcher，Watcher进行回调通知组件重新渲染的函数，之后根据diff算法来决定是否发生视图的更新。
+
+Vue在初始化组件数据时，在生命周期的beforeCreate与created钩子函数之间实现了对data、props、computed、methods、events以及watch的处理。
+
 * proxy代理。
   ```
   /*添加代理*/
@@ -1103,3 +1109,14 @@ https://github.com/answershuto/learnVue/blob/master/docs/%E4%BB%8E%E6%BA%90%E7%A
     }
     ```
     Vue的响应式数据都会有一个__ob__的属性作为标记，里面存放了该属性的观察器，也就是Observer的实例，防止重复绑定。
+
+### 24、React和Vue的相同和不同
+https://www.cnblogs.com/ray123/p/11225807.html
+
+### 25、HTML渲染机制
+https://blog.csdn.net/qq_34817440/article/details/102253688
+
+### 26、vue高频原理面试题
+https://zhuanlan.zhihu.com/p/101330697
+
+https://www.cnblogs.com/yalong/p/9881926.html

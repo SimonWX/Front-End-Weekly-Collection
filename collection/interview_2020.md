@@ -363,6 +363,7 @@ https://segmentfault.com/a/1190000017329980
 #### 1、缓存位置和优先级
 https://zhuanlan.zhihu.com/p/160208356
 #### 2、浏览器缓存策略
+![cache](https://pic3.zhimg.com/80/v2-3794d45d518d45c5ff823d295f55ffaa_1440w.jpg)
 ![avatar](https://pic4.zhimg.com/80/v2-62033a0eeea7ebfddab26aa4f27932c3_1440w.jpg)
 
 ### 七、CSS
@@ -372,6 +373,7 @@ https://zhuanlan.zhihu.com/p/160208356
 * 给浮动的元素的容器添加浮动
 * 使用邻接元素处理
 * 使用CSS的:after伪元素
+
 https://zhuanlan.zhihu.com/p/94697222
 #### 2、常见布局
 https://www.cnblogs.com/wangsongbai/p/10215141.html
@@ -449,6 +451,8 @@ https://blog.csdn.net/sinat_36422236/article/details/88763187
 https://blog.csdn.net/xuedan1992/article/details/80958522
 
 #### 2、HTTP协议
+![tcp/ip](https://img-blog.csdn.net/20180708124241228?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1ZWRhbjE5OTI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
 https://www.cnblogs.com/an-wen/p/11180076.html
 #### 3、HTTPS
 https://www.cnblogs.com/makelu/p/11140824.html

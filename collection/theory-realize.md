@@ -638,6 +638,7 @@ console.log(instanceof2(test, Test)) // output: true
       })
       ```
       ![reduce每次执行变化](https://images2018.cnblogs.com/blog/1403464/201807/1403464-20180713112335425-223204218.png)
+      
       reduce还有第二个参数，我们可以把这个参数作为第一次调用callback时的第一个参数，上面这个例子因为没有第二个参数，所以直接从数组的第二项开始，如果我们给了第二个参数为5，那么结果是这样的：
       ```
       [0,1,2,3,4].reduce(function(previousVal,currentVal, index, array){

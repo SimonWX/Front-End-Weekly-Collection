@@ -440,3 +440,10 @@ Vue.component('base-checkbox', {
 * v-once，只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
 
 ## 9、自定义指令
+
+## 项目中遇到的问题。
+  * ie9，跨域的处理，拒绝访问
+  * ie9及以下，input的placeholder不支持（已解决）
+  * ie9及一下，input的后边的小叉号
+  * ie9及一下，border-radius和filter互相冲突的问题（已解决）
+  

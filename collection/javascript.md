@@ -1,7 +1,7 @@
 # *Interview Collection For FE/JavaScript*
 
-## 1、事件代理（时间委托）
-事件代理（Event Delegation），又称之实践委托。是JavaScript中常用绑定事件的常用技巧。顾名思义，"事件代理"即是把原本需要绑定在子元素的响应时间（click，keydown...）委托给父元素，让父元素担当时间监听的职务。事件代理的原理是DOM元素的事件冒泡。
+## 1、事件代理（事件委托）
+事件代理（Event Delegation），又称之事件委托。是JavaScript中常用绑定事件的常用技巧。顾名思义，"事件代理"即是把原本需要绑定在子元素的响应事件（click，keydown...）委托给父元素，让父元素担当时间监听的职务。事件代理的原理是DOM元素的事件冒泡。
 举个通俗的例子，比如一个宿舍的同学快递同时到了，一种方法就是他们一个个去领取，还有一种方法就是把这件事情委托给宿舍长，让一个人出去拿所有快递。然后在根据收件人一一分发给每个宿舍同学。
 在这里，取快递就是一个事件，每个同学指的是需要响应时间的DOM元素，而出去统一领取快递的宿舍长就是代理的元素，所以真正绑定事件的是这个元素，按照收件人分发快递的过程就是在事件执行中，需要判断当前响应的事件应该匹配到被代理元素中的哪一个或者哪几个。
 
@@ -114,8 +114,19 @@ function|必需，规定当事件发生时运行的函数。
       console.log('inner:', a) // 2
     }
     foo(a)
-    console.log('out:', b) // 1
+    console.log('out:', a) // 1
+
+    1.使用var声明变量，在方法内部是局部变量，在方法外部是全局变量
+    2.没有使用var声明的变量，在方法内部或外部都是全局变量，但如果是在方
+    法内部声明，在方法外部使用之前需要先调用方法，告知系统声明了全局变量后方可在方法外部使用。
+    
+    在函数作用域内 加var定义的变量是局部变量,不加var定义的就成了全局变量
+    在function内部， 加var的是局部变量， 不加var的则是全局变量；
+    在function外部， 不管有没有使用var声明变量，都是全局变量，在function外部,var关
+    键字一般可以省略，但是为了书写规范和维护方便以及可读性好，我个人不建议省略var关键字!
     ```
+
+    
 
 2. 题目二
     
@@ -142,8 +153,7 @@ function|必需，规定当事件发生时运行的函数。
     var a = 'str';
     var b = a.self();
     console.log(a); // 'str'
-    
-    console.log(b); String {'str'}
+    console.log(b); // String {'str'}
     
     // valueOf() 方法返回一个String对象的原始值(primitive value)，该值等同于String.prototype.toString()
     
@@ -241,8 +251,9 @@ function|必需，规定当事件发生时运行的函数。
     // promise1 Promise {<pending>}
 		// promise2 Promise {<pending>}
 		// Uncaught (in promise) Error: error !!
-		// promise1 Promise {<resolved>: "success"}
+		// promise1 Promise {<fulfilled>: "success"}
 		// promise2 Promise {<rejected>: Error: error !!
+
 
     解释：promise有三种状态：pending、fulfilled、或rejected。
     状态改变只能是 pending->fulfilled 或者 pending->rejected，状态一旦改变则不能再变。
@@ -265,6 +276,7 @@ function|必需，规定当事件发生时运行的函数。
     })
     // 结果：
     // then: success1
+    // Promise {<fulfilled>: undefined}
     解释：构造函数中resolve或reject只有第一次执行有效，
     多次调用没有任何作用，即promise状态一旦改变则不能再变
     ```

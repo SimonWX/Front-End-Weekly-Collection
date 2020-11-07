@@ -17,7 +17,7 @@
 3. 
 
 ```
-console.log(typeof(null)) //'Object'
+console.log(typeof(null)) //'Object'、
 console.log(typeof(undefined)) // undefined
 console.log(typeof(NaN)) // number
 ```

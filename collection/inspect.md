@@ -108,7 +108,11 @@
       // 8
       // process.nextTick()的意思就是定义出一个动作，并且让这个动作在下一个事件轮询的时间点上执行。
 
-    ```
+```
+console.log(typeof(null)) //'Object'、
+console.log(typeof(undefined)) // undefined
+console.log(typeof(NaN)) // number
+```
 
 ### 四、
 1. 编码题，实现一个不定数量参数的求和函数，非number类型数据需要进行过滤。

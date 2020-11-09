@@ -876,29 +876,131 @@ console.log(instanceof2(test, Test)) // output: true
 
 ### 实战题
 1. 给定数组['1a', '2b', '13c', '5a'], 输出出现次数最多的字母前数字之和 6。
-```
-function sum(arr){
-  let hash = {}
-  arr.map((item,index)=>{
-      let key = item.substr(item.length-1,1)
-      let sumTemp = Number(item.substring(0, item.length-1))
-      if(hash.hasOwnProperty(key)){ // 已经存在
-          hash[key] = { sum: (hash[key].sum) + (sumTemp), num: ++(hash[key].num) }
-      }else{ // 未存在
-          hash[key] = { sum: Number(sumTemp), num: 1 }
+    ```
+    function sum(arr){
+      let hash = {}
+      arr.map((item,index)=>{
+          let key = item.substr(item.length-1,1)
+          let sumTemp = Number(item.substring(0, item.length-1))
+          if(hash.hasOwnProperty(key)){ // 已经存在
+              hash[key] = { sum: (hash[key].sum) + (sumTemp), num: ++(hash[key].num) }
+          }else{ // 未存在
+              hash[key] = { sum: Number(sumTemp), num: 1 }
+          }
+      })
+      let maxTemp = 0
+      let result = null
+      for(let key in hash){
+        if(hash[key].num > maxTemp){
+          maxTemp = hash[key].num
+          result = {'出现最多次的key': key, '出现最多次的字母前数字之和sum': hash[key].sum}
+        }
       }
-  })
-  let maxTemp = 0
-  let result = null
-  for(let key in hash){
-    if(hash[key].num > maxTemp){
-      maxTemp = hash[key].num
-      result = {'出现最多次的key': key, '出现最多次的字母前数字之和sum': hash[key].sum}
+      console.log('result',result)
+      return result
     }
-  }
-  console.log('result',result)
-  return result
-}
-sum(['1a', '2b', '13c', '5a'])
+    sum(['1a', '2b', '13c', '5a'])
 
-```
+    ```
+
+2. 实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。
+
+    示例：
+
+    * 输入： 1->2->3->4->5 和 k = 2
+    * 输出： 4
+    
+    说明：
+
+    给定的 k 保证是有效的。
+
+    ```
+    /**
+    * @param {ListNode} head
+    * @param {number} k
+    * @return {number}
+    */
+    var kthToLast = function(head, k) {
+        let left = head;
+        let right = head;
+        while(k>0){ // 右指针先行k步
+            right = right.next;
+            k--;
+        }
+        while(right !== null){ // right未到链表尾部时
+            left = left.next;
+            right = right.next;
+        }
+        // 右指针到达单链表尾部时，返回左指针
+        return left.val
+    };
+    ```
+
+3. 降维 去重 排序: 
+
+    `[1,2,3,[4,5,[6],[6,[7,()=>{},{}]]]].uniqueSort()`
+    
+    [1,2,3,4,5,6,7,8]
+		
+    ```
+    let arrList =  [10,2,13,4,[5,6],6,[7,[8,9]],1,11, [11,12],3]
+		function uniqueSort(arr){
+		  if(arr.length === 0 ){return []}
+		  // 扁平化
+		  function flatten(arr){
+		    return arr.toString().split(",").map(function(item){
+		      return Number(item)
+		    })
+		  }
+		  var flattenArr = flatten(arr)
+		  
+		  // 去重
+		  function unique(arr){
+		    return arr.filter(function(item,index,arr){
+		      return arr.indexOf(item) === index
+		    })
+		  }
+		  let uniqueArr = unique(flattenArr)
+		  
+		  // 排序
+		  function quickSort(arr){
+		    if(arr.length<=1){
+		      return arr
+		    }
+		    var left = [], right = [];
+		    var pivotIdx = Math.floor(arr.length/2)
+		    var pivot = arr.splice(pivotIdx,1)[0]
+		    arr.forEach(function(item){
+		      if(item<pivot){
+		        left.push(item)
+		      }else{
+		        right.push(item)
+		      }
+		    })
+		    return quickSort(left).concat(pivot, quickSort(right))
+		  }
+		  var rankArr = quickSort(uniqueArr)
+		  return rankArr
+		}
+		console.log(arrList)
+		console.log(uniqueSort(arrList))
+    ```
+4. 写出下列程序的结果
+    ```
+    Function.prototype.a = () => alert(1);
+
+    Object.prototype.b = () => alert(2);
+
+    function A() {};
+
+    var a = new A();
+
+    a.a();
+
+    a.b();
+
+    ```
+    ```
+    // undefined
+    // 2
+    ```

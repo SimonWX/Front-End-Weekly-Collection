@@ -1,5 +1,4 @@
 // 冒泡排序
-
 Array.prototype.bubbleSort = function () {
   console.log(this);
   for (let i = 0; i < this.length - 1; i += 1) {
@@ -13,7 +12,5 @@ Array.prototype.bubbleSort = function () {
     }
   }
 };
-
 const arr = [5, 4, 3, 2, 1]
-
 arr.bubbleSort();

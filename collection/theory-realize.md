@@ -1004,3 +1004,94 @@ console.log(instanceof2(test, Test)) // output: true
     // undefined
     // 2
     ```
+5. 在使用计算属性的时，函数名和data数据源中的数据可以同名吗
+    ```
+    答： 不可以。不可以，同名会报错：The computed property "xxxx" is already defined in data
+    ```
+6. Vue中data和computed的区别
+    ```
+    https://segmentfault.com/a/1190000018236655
+    1. data 和 computed都是响应式的，
+    2.Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为  getter/setter，从而让 data 的属性能够响应数据变化。
+      深入理解响应式原理：
+      当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。
+      每个组件实例都有相应的 watcher 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
+    3.data中的属性并不会随赋值变量的改动而改动，(赋值变量类似：num1: aaa.bbb这种，而这种是直接赋值：num1: "aaa")
+    当需要这种随赋值变量的改动而改动的时候，还是用计算属性computed合适
+    如果实在要在data里面声明属性，可以先赋一个值，然后在methods里面定义方法操作该属性，效果等同，也会有响应式
+    ```
+7. vue v-if 加key值的作用
+    ```
+    vue在渲染元素时，处于效率考虑， 会尽量地复用已有的元素而非重新渲染，比如上面的实例，在，点击切换按钮，虽然DOM变了，但是之前在输入框键入的内容并没有改变，只是替换了placeholder的内容，说明input元素被复用了，如果不希望这样做，可以使用vue.js提供的key属性，它可以让你自己决定是否要复用元素，key的值必须是唯一的！！！，例如下面这样：
+    ```
+8. vue中v-text，v-html, v-model, {{}}之间的异同
+    ```
+    v-text是用于操作纯文本，它会替代显示对应的数据对象上的值。当绑定的数据对象上的值发生改变，插值处的内容也会随之更新。注意：此处为单向绑定，数据对象上的值改变，插值会发生变化；但是当插值发生变化并不会影响数据对象的值。其中：v-text可以简写为{{}},并且支持逻辑运算。
+
+    v-html用于输出html，它与v-text区别在于v-text输出的是纯文本，浏览器不会对其再进行html解析，但v-html会将其当html标签解析后输出。
+
+    v-model通常用于表单组件的绑定，例如input，select等。它与v-text的区别在于它实现的表单组件的双向绑定，如果用于表单控件以外标签是没有用的。
+
+    {{}}是v-text的简写形式
+    ```
+9. vue中created和mounted的区别
+    ```
+    created：在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
+
+    mounted：在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+    ```
+10. vue请求数据放在created好还是mounted里好
+    ```
+    建议放在created里
+
+    created:在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
+
+    mounted:在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+
+    如果在mounted钩子函数中请求数据可能导致页面闪屏问题
+    其实就是加载时机问题，放在created里会比mounted触发早一点，如果在页面挂载完之前请求完成的话就不会看到闪屏了
+
+    补充知识：vue各阶段数据可使用情况：created，computed，data，prop，mounted，methods，watch
+
+    created时，可用data和prop中的数据。
+    
+    computed的属性，当在mounted或者dom中使用到时，才会属性的执行代码。
+
+    最后是mouted，可使用前面的数据，并且此时才可以操作dom。
+
+    watch不会再创建阶段自动执行，除了添加立即执行这个配置项。
+
+    加载顺序：
+    ```
+    ![加载顺序](https://img.jbzj.com/file_images/article/202007/20200727092627.jpg)
+    ```
+    在官方文档中，强调了computed区别于method最重要的两点
+
+    computed是属性调用，而methods是函数调用
+
+    computed带有缓存功能，而methods不是
+
+    计算属性是基于它们的依赖进行缓存的，只有在它的相关依赖发生改变时才会重新求值。
+
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: '我是消息，'
+      },
+      methods: {
+        methodTest() {
+        return this.message + '现在我用的是methods'
+        }
+      },
+      computed: {
+        computedTest() {
+        return this.message + '现在我用的是computed'
+        }
+      }
+    })
+
+    这就意味着只要 message 还没有发生改变，多次访问 computedTest计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+    相比而言，只要发生重新渲染，method 调用总会执行该函数。
+    ```
+    https://www.jb51.net/article/191794.htm

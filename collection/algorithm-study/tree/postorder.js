@@ -15,8 +15,8 @@ const postorderPlus = (root)=>{
   // 2. 把先序遍历的访问操作，改成入栈操作
   // 3. 利用栈的后进先出特性，子节点逆序输出
   if(!root){ return; }
-  const outputStack = []; // 做倒置操作的堆栈
-  const stack = [root]; // 函数调用堆栈
+  const outputStack = []; // 做倒置操作的栈
+  const stack = [root]; // 函数调用栈
     while(stack.length){ // 根右左
       const n = stack.pop();
       outputStack.push(n);

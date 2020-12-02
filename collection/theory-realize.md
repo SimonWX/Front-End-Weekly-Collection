@@ -1095,3 +1095,31 @@ console.log(instanceof2(test, Test)) // output: true
     相比而言，只要发生重新渲染，method 调用总会执行该函数。
     ```
     https://www.jb51.net/article/191794.htm
+
+11. 给出下面题的答案
+```
+async function runPromise(){
+    const start = Date.now();
+    let index = 0;
+    const p = new Promise(resolve =>{
+        console.log('p1', Date.now()-start);
+        setTimeout(()=>{
+            index = index+1;
+            resolve(`index:${index}`)
+        },3000)
+    })
+    console.log('p2', Date.now() - start);
+    const p_a = await p;
+    console.log(p_a, Date.now() - start);
+    const p_b = await p;
+    console.log(p_b, Date.now() -start);
+}
+runPromise();
+
+----- 答案：
+'p1' 1
+'p2' 2
+Promise {<pending>}
+'index:1' 3005
+'index:1' 3006
+```

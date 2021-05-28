@@ -7,7 +7,7 @@
 2. new操作符执行了什么？
     * var obj = new Base();
     * new操作符具体干了什么呢?其实很简单，就干了三件事情。
-      ```
+      ```JavaScript
       var obj = {};
       obj.__proto__ = Base.prototype;
       Base.call(obj);
@@ -30,19 +30,19 @@
 
 ### 三、
 1. 
-    ```
+    ```JavaScript
     console.log(typeof(null)) //'Object'
     console.log(typeof(undefined)) // undefined
     console.log(typeof(NaN)) // number
     ```
 
-    ```
+    ```JavaScript
     console.log(NaN == undefined) // false
     console.log(1 === true) // false
     console.log(a === new String('a')) //false a：Undefined newString('a') 字符串对象
     ```
 
-    ```
+    ```JavaScript
     console.log(0 == '') // true
     console.log(0==false) // true
     console.log(isNaN(NaN)) // true
@@ -55,7 +55,7 @@
     ```
 
 2. 
-    ```
+    ```JavaScript
     window.name = 'XDF'
     function A(){
       this.name = 123
@@ -73,7 +73,7 @@
     ```
 
 3. 
-    ```
+    ```JavaScript
       console.log(1);
       setTimeout(function() {
         console.log(2);
@@ -108,15 +108,9 @@
       // 8
       // process.nextTick()的意思就是定义出一个动作，并且让这个动作在下一个事件轮询的时间点上执行。
 
-```
-console.log(typeof(null)) //'Object'、
-console.log(typeof(undefined)) // undefined
-console.log(typeof(NaN)) // number
-```
-
 ### 四、
 1. 编码题，实现一个不定数量参数的求和函数，非number类型数据需要进行过滤。
-    ```
+    ```JavaScript
     function add(){
       var sum =0;
       for(var i=0;i<arguments.length;i++){
@@ -129,7 +123,7 @@ console.log(typeof(NaN)) // number
 
 2. 数组去重
     * for循环嵌套，利用splice去重（时间复杂度：n²）
-      ```
+      ```JavaScript
       function newArr(arr){
         for(var i=0;i<arr.length;i++){
           for(var j=i+1;j<arr.length;j++){
@@ -147,7 +141,7 @@ console.log(typeof(NaN)) // number
       ```
 
     * 建新数组，利用indexOf去重（基本思路是新建一个数组，原数组遍历传入新数组，判断值是否存在，值不存在就加入该新数组中，时间复杂度：n）
-      ```
+      ```JavaScript
       function newArr(array){ 
         //一个新的数组 
         var arrs = []; 
@@ -165,7 +159,7 @@ console.log(typeof(NaN)) // number
       ```
     
     * ES6中利用Set去重
-      ```
+      ```JavaScript
       function newArr(arr){
         return Array.from(new Set(arr))
       }
@@ -174,13 +168,13 @@ console.log(typeof(NaN)) // number
       ```
 
 3. 实现如下求和函数
-    ```
+    ```JavaScript
     sum(1); //1
     sum(1)(2); //3
     sum(1)(2)(3,4) // 10
     ```
 
-    ```
+    ```JavaScript
     //案例1
     //sum(2,3)和sum(2)(3)均能输出outPut5，这个问题较为简单，只要返回一个函数即可，本例中使用了es6语法
     function sum(x = 0, y) {
@@ -200,7 +194,7 @@ console.log(typeof(NaN)) // number
     sum(2)(3); //输出outPut5
     ```
 
-    ```
+    ```JavaScript
     //案例二、add(2,3,4...)和add(2)(3)(4)...都输出相同结果的解决方案
     function add(x) {
       var sum = x;
@@ -219,7 +213,7 @@ console.log(typeof(NaN)) // number
     console.log(add(1)(2)(3)(4)(5)(6)); //21
     ```
 
-    ```
+    ```JavaScript
     //扩展案例3、此函数使用es6实现输入sum(),sum(2,3,4...)多个值相加，还有sum(2)(3)(4)...等多个数值分别相加的值相等，此案例也是最完整的解决方案
     function sum(...args) {
       if ([...args].length == 1) {
@@ -299,7 +293,7 @@ console.log(typeof(NaN)) // number
 |::selection	|选择指定元素中被用户选中的内容	| 3
 
 (1)
-```
+```JavaScript
   console.log([1<2==1,3<2==0])  // [true, true]
   console.log(true<2)  //true
   console.log(false<2) // true
@@ -311,7 +305,7 @@ console.log(typeof(NaN)) // number
   console.log(undefined == false) //false
 ```
 (2)
-```
+```JavaScript
   var scope = 'global'
   function f(){
     console.log(scope);   // undefined
@@ -321,7 +315,7 @@ console.log(typeof(NaN)) // number
   f()
 ```
 
-```
+```JavaScript
   for(var i=0; i<5; i++){
     setTimeout(function(){
       console.log(i)
@@ -334,8 +328,8 @@ console.log(typeof(NaN)) // number
   5
 ```
 
-```
-  统计字符串中出现字符最多的算法
+```JavaScript
+  // 统计字符串中出现字符最多的算法
   var obj = {};
   for (var i = 0; i < str.length; i++) {
     if (!obj[str.charAt(i)]) {
@@ -346,7 +340,7 @@ console.log(typeof(NaN)) // number
   }
 ```
 
-```
+```JavaScript
   数字千位分隔符
   function numFormat(num){
     num=num.toString().split(".");  // 分隔小数点
@@ -410,7 +404,7 @@ console.log(typeof(NaN)) // number
     | for..of	| 可迭代对象(Array, Map, Set, arguments等) | 返回属性值 |
 
 2. 实现元素的拖动
-    ```
+    ```JavaScript
     function drag(element,event) {
       // 鼠标起始坐标
       var 
@@ -450,7 +444,7 @@ console.log(typeof(NaN)) // number
     * <https://blog.csdn.net/weixin_33693070/article/details/91422028>
 
 ### 三、运行结果题
-```
+```JavaScript
 1、
 console.log('abc'.charAt(3));  // ""
 console.log(Object.prototype.toString.call(123)); // [object Number]

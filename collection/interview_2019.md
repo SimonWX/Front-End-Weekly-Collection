@@ -406,7 +406,7 @@ function treeToArr(t){
 
 ![冒泡排序示意图](imgs/冒泡排序示意图.gif)
 
-```
+```JavaScript
 function bubbleSort(arr){
  var len = arr.length;
  for(var i=0; i<len; i++){

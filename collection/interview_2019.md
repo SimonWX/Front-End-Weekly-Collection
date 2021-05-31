@@ -1,23 +1,5 @@
 # *Interview Collection For FE/JavaScript*
 
-## 1、手写一个js的深克隆 （美团，爱奇艺）
-https://www.jianshu.com/p/bb9aa8d0f051
-```
-function deepCopy(obj){
- // 判断是否是简单数据类型
- if(typeof obj == 'object'){
-  // 复杂数据类型
-  var result = obj.constructor == Array ? [] ： {};
-  for (let i in obj){
-	 result[i] = typeof obj[i] == 'object' ? deepCopy(obj[i]) : obj[i];
-  }	
- }else{
-  // 简单数据类型 直接 == 赋值
-  var  result = obj;
- }
- return result;
-}
-```
 
 ## 2、手写组合继承(美团，爱奇艺，搜狗)
 

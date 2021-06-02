@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // 先定义一个某数值范围内的随机数
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      /**
+       * 克隆数组
+       * @params {array} arr 原数组
+       * @return {array} arr 新数组
+       */
+      function cloneArr(arr) {
+        // 从第一个字符就开始copy
+        // slice(start,end)方法可从已有数组中返回选定的元素
+        return arr.slice(0);
+      }
+
+      // 洗牌
+      function shuffle(arr, flag = false) {
+        // debugger
+        let newArr = [];
+        flag ? (newArr = arr) : (newArr = cloneArr(arr));
+
+        for (let i = 0; i < newArr.length; i++) {
+          let j = getRandom(0, i);
+          let temp = newArr[i];
+          newArr[i] = newArr[j];
+          newArr[j] = temp;
+          console.log(`第${i}次循环`)
+          console.log('j：',j)
+          console.log('temp：',temp)
+          console.log('newArr：',newArr)
+        }
+        return newArr;
+      }
+
+      let arr = [1,3,5,11,8,4,1]
+      let newArr = shuffle(arr)
+      console.log(arr, newArr)
+    </script>
+  </body>
+</html>

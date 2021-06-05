@@ -180,8 +180,8 @@
     function sum(x = 0, y) {
       if ([...arguments][1] == undefined) {
         let befor = [...arguments][0];
-        return function suum(afte) {
-          let sum2 = befor + afte;
+        return function suum(after) {
+          let sum2 = befor + after;
           console.log(`outPut${sum2}`);
         }
       } else {
@@ -362,26 +362,26 @@
   }
 ```
 
-```
-  解析url为对象
-  第一种：只适用于/User/vip_card_manager?useless=219
-  function urlSearch(){
-    var name, value;
-    var str=location.href; //取得整个地址栏
-    var num=str.indexOf('?')
-    str=str.substr(num+1); //取得所有参数
-    var arr = str.split('&'); //各个参数放在数组中
-    var result = {}
-    for(var i=0; i<arr.length; i++){
-      num = arr[i].indexOf('=');
-      if(num>0){
-        name = arr[i].substring(0,num);
-        value=arr[i].substr(num+1);
-        result[name]=value;
-      }
+```JavaScript
+// 解析url为对象
+第一种：只适用于/User/vip_card_manager?useless=219
+function urlSearch(){
+  var name, value;
+  var str=location.href; //取得整个地址栏
+  var num=str.indexOf('?')
+  str=str.substr(num+1); //取得所有参数
+  var arr = str.split('&'); //各个参数放在数组中
+  var result = {}
+  for(var i=0; i<arr.length; i++){
+    num = arr[i].indexOf('=');
+    if(num>0){
+      name = arr[i].substring(0,num);
+      value=arr[i].substr(num+1);
+      result[name]=value;
     }
-    return result
   }
+  return result
+}
 ```
 
 ## （试卷三/面试题3）
@@ -444,8 +444,9 @@
     * <https://blog.csdn.net/weixin_33693070/article/details/91422028>
 
 ### 三、运行结果题
-```JavaScript
+
 1、
+```JavaScript
 console.log('abc'.charAt(3));  // ""
 console.log(Object.prototype.toString.call(123)); // [object Number]
 console.log(Number(NaN)); // NaN
@@ -457,22 +458,27 @@ console.log(isNaN(NaN));  // true
 console.log(parseFloat('')); // NaN || undefined
 console.log(Number('')); // 0
 console.log('12'-'1'); // 11
+```
 
 2、
+```JavaScript
 for(var i=0;i<5;i++){
 	(function(i){
 		setTimeout(function(){
 			console.log(i);
 		},1000*i);
 	})(i)
-} 
+}
+ 
 // 0
 // 1
 // 2
 // 3
 // 4
+```
 
-3. 
+3、
+```JavaScript
 var User = {
 	count: 1,
 	getCount: function(){

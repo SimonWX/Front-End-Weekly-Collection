@@ -105,3 +105,80 @@ ssl建立握手过程
 ['/a', '/a/c', '/b/c', '/b/c/d', '/b/d']
 => ['/a', '/b/c', '/b/d']
 ```
+
+
+https://alibole.alibaba-inc.com/IntervieweeScreen?token=a8be9cd3-e763-4ae8-9eb5-c3592d84cbc8&lang=zh
+
+//评测题目: 无
+
+var text = ' world';
+
+var obj = {
+	text: ' sun',
+	getText: () => {
+		return `hello ${this.text}`;
+	}
+}
+
+obj.getText();
+
+
+// hello sun
+
+
+var text = ' world';
+
+var obj = {
+	text: ' sun',
+	getText: function() {
+        return `hello ${this.text}`
+	}
+}
+
+obj.getText();
+
+// hello sun
+
+var text = ' world';
+
+var obj = {
+	text: ' sun',
+	getText: function() {
+		return () => {
+        	return `hello ${this.text}`
+        };
+	}
+}
+
+obj.getText()();
+
+
+// LET VAR
+var a = 1;
+
+(() => {
+	console.log(a);
+	var a = 2;
+})();
+
+// 2
+
+
+let a = 1;
+
+(() => {
+	console.log(a);
+	let a = 2;
+})();
+
+// error
+
+[a, b, c]
+
+// 输出
+a(b(c()));
+
+function fakeCompose(){
+	
+    }
+}

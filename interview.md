@@ -182,3 +182,178 @@ function fakeCompose(){
 	
     }
 }
+
+
+金钱格式化（非正则）
+```JavaScript
+function moneyFormat(money) {
+  let moneyStr = money.toFixed(2)
+  let moneyInt = moneyStr.substring(0, moneyStr.indexOf('.'))
+  let moneyDot = moneyStr.substring(moneyStr.length, moneyStr.indexOf('.'))
+  let formatInt = ''
+  for (let i = moneyInt.length - 1; i >= 0; i--) {
+    if (i % 3 === 0 && formatInt.length > 0 && i != 0) {
+      formatInt = `,${moneyInt[i]}${formatInt}`
+    } else {
+      formatInt = moneyInt[i] + formatInt
+    }
+  }
+  return formatInt + moneyDot
+}
+let money = 123456.789
+let result = moneyFormat(money)
+console.log(result)
+
+// 2  3  5  4  1
+```
+
+贝壳找房
+
+```JavaScript
+// 1
+setTimeout(function () {
+  console.log('timeout1'); 
+}, 1000);
+
+async function f1 () {
+  const a = await console.log('await1');
+  console.log('await2') 
+}
+f1(); 
+console.log('start');
+Promise.resolve().then(function () {
+  console.log('promise1'); 
+  Promise.resolve().then(function () {
+    console.log('promise2'); 
+  });
+  
+  setTimeout(function () {
+    Promise.resolve().then(function () {
+      console.log('promise3'); 
+    });
+    console.log('timeout2') 
+  }, 0);
+  
+});
+
+console.log('done');
+// await1
+// start
+// done
+// await2
+// promise1
+// promise2
+// timeout2
+// promise3
+
+
+//2 
+/*
+ * @Description: [‘12a’,’3b’,’4c’,’15d’,'15e',’2a’] 统计这个数组中出现次数最多的字母前的数字和,
+ * 这个数组就是a, 12+2 = 14
+ */
+ 
+ 
+ function maxNumStr(arr){
+  let arrLen = arr.Length;
+  let temp = {}
+  for(let i=0; i<arrLen; i++){
+    let curTag = arr[i].substr(arr[i].length-2)
+    if(temp.hasOwnProperty(curTag)){
+      temp[curTag] = temp[curTag] + 1
+    }else{
+      temp[curTag] = 1 
+    }
+  }
+  
+  let result 
+  result['maxSum'] = 0
+  result['maxSumKey'] = ''
+  for(let i in temp){
+    if(maxSum < temp[i]){
+      result['maxSum'] = temp[i]
+      result['maxSumKey'] = i
+    }
+  }
+  return result
+}
+ 
+
+//3 
+componentDidMount() {
+    // 初始value是0
+    this.setState({
+        value: this.state.value++,
+    });
+    console.log(1111, this.state.value); 
+
+    this.setState({
+        value: this.state.value++,
+    });
+    console.log(2222, this.state.value); 
+
+    setTimeout(() => {
+        console.log('========>', this.state.value); 
+        this.setState({
+            value: this.state.value++,
+        });
+
+        console.log(3333, this.state.value); 
+
+        this.setState({
+            value: this.state.value++,
+        });
+
+        console.log(4444, this.state.value); 
+    }, 0);
+}
+
+
+// 4
+var name = 'Tom';
+(function() {
+  if (typeof name == 'undefined'){
+    var name = 'jack'
+    console.log('Goodbye ' + name);
+  } else {
+    console.log('Hello ' + name);
+  }
+})();
+// Goodbye jack
+
+// 5
+/*
+ * @Description:  obj = {age:10, age1:100, age2: 200, age3: 300}  输出这个对象上所有数值大于100的属性及属性值
+ */
+
+// 6
+/*
+ * @Description:  实现一个弹窗组件，组件里有一个输入框，确定和取消按钮。在文本框内输入文字点击确定后弹框隐藏，并将数据传递到外层组件。点击取消关闭弹窗
+ */
+
+
+
+// 7. 
+function Foo() {
+  Foo.a = function() {
+    console.log(1)
+  }
+  this.a = function() {
+    console.log(2)
+  }
+}
+Foo.prototype.a = function() {
+  console.log(3)
+}
+Foo.a = function() {
+  console.log(4)
+}
+
+Foo.a();
+let obj = new Foo();    
+obj.a();
+Foo.a();
+// 4
+// 2
+// 1
+```
